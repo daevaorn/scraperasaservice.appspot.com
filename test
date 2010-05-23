@@ -1,0 +1,10 @@
+#!/bin/sh
+
+export PYTHONPATH=./compat:$PYTHONPATH
+export USER_EMAIL=''
+export SERVER_NAME=''
+export SERVER_PORT=''
+export SERVER_SOFTWARE='Development\XXX'
+
+python2.5 /usr/local/bin/nosetests --where=app --with-gae --gae-lib-root=/mnt/compat/python/google_appengine\
+                                   --gae-application=./ --without-sandbox --with-doctest $@

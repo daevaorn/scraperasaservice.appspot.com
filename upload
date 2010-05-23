@@ -1,0 +1,3 @@
+#!/bin/sh
+
+./test && appcfg.py update . --email=daevaorn@gmail.com
