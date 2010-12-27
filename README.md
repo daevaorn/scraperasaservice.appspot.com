@@ -36,10 +36,11 @@
 ## Pipelines
 
   1. загрузка документа (html, xml, json)
-  2. парсинг (html5lib, minidom, simplejson->minidom)
+  2. парсинг (html5lib, minidom, simplejson -> minidom)
   3. матчинг (xpath)
   4. сериализация дерева (raw, json, xml, yaml?)
-Проблемы:
+
+## Проблемы
 
  - Как скрапить страницы за логином?
     - Заставлять клиента логиниться по обычной процедуре
@@ -57,23 +58,31 @@
 
 ### POST /session/
 Create session with auto id
+
 #### Params _{application/json}_
  - **host** &mdash; target host _{string}_
  - **headers** &mdash; default headers _{hash}_
  - **cookies** &mdash; default cookies _{hash}_
+
 #### Returns
+
 ##### Status
 201 Created
+
 ##### Headers
  - **location** &mdash; session url
 ___
+
 ### PUT /session/[id]
 Create session with explicit id
+
 #### Params _{application/json}_
  - **host** &mdash; target host _{string}_
  - **headers** &mdash; default headers _{hash}_
  - **cookies** &mdash; default cookies _{hash}_
+
 #### Returns
+
 ##### Status
 200 OK
 
@@ -81,9 +90,12 @@ Create session with explicit id
 
 ### DELETE /session/[id]
 Delete existing session
+
 #### Params
 None
+
 #### Returns
+
 ##### Status
 200 OK
 
@@ -91,11 +103,15 @@ None
 
 ### GET /session/[id]
 Get session status and statistic
+
 #### Params
 None
+
 #### Returns
+
 ##### Status
 200 OK
+
 ##### Body _{application/json}_
  - **created_at** &mdash; session creation time _{string}_
  - **headers** &mdash; default request headers _{list}_
@@ -107,24 +123,28 @@ None
 
 ### POST /session/[id]
 Scrape url
+
 #### Params _{application/json}_
  - **headers** &mdash; request headers _{list}_
  - **cookies** &mdash; request cookies _{hash}_
  - **urls** &mdash; requested urls _{list of hashes}_:
-        - **url** &mdash; concrete url _{string}_
-        - **match** &mdash; XPath expression info _{hash}_:
-            - **raw** &mdash; do not convert result to json _{boolean}_
-            - **pattern** &mdash; XPath expression to match _{string}_
-            - **default_namespace** &mdash; setting default namesapce _{string}_
-            - **namespaces** &mdash; namespaces map _{hash}_:
-                - _**key**_ &mdash; prefix _{string}_
-                - _**value**_ &mdash; namespace _{string}_
-            - **variables** &mdash; expression variables _{hash}_
+    - **url** &mdash; concrete url _{string}_
+    - **match** &mdash; XPath expression info _{hash}_:
+       - **raw** &mdash; do not convert result to json _{boolean}_
+       - **pattern** &mdash; XPath expression to match _{string}_
+       - **default_namespace** &mdash; setting default namesapce _{string}_
+       - **namespaces** &mdash; namespaces map _{hash}_:
+       - _**key**_ &mdash; prefix _{string}_
+       - _**value**_ &mdash; namespace _{string}_
+    - **variables** &mdash; expression variables _{hash}_
  - **return_content** &mdash; must return whole content _{boolean}_
  - **follow_redirects** &mdash; must handle redirects _{boolean}_
+
 #### Returns
+
 ##### Status
 200 OK
+
 ##### Body _{application/json}_
  - _**key**_ &mdash; url _{string}_
  - _**value**_ _{hash}_:
